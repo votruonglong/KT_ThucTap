@@ -1,8 +1,11 @@
 import React from 'react'
+import QuestionForm from '../../components/QuestionInput'
 
 const UserContainer = () => {
     return (
-        <div>UserContainer</div>
+        <div>
+            <QuestionForm/>
+        </div>
     )
 }
 
