@@ -1,15 +1,204 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
 
+:root {
+	--bg-01: #fff8a7;
+	--bg-02: #f9ced7;
+	--bg-03: #ebf6f2;
+	--bg-04: #b0cdeb;
+	--bg-05: #e8dfe4;
+}
+
 /* RESET */
 *,
 *::before,
 *::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: "Baloo Paaji 2", sans-serif;
 }
 
 ul,
 ol {
-    list-style: none;
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+/* ==== QUESTION CONTAINER ==== */
+.question-container {
+	width: 74%;
+	margin: 40px auto;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	gap: 24px;
+	flex-wrap: wrap;
+	padding: 32px;
+	border-radius: 8px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+/* ==== QUESTION BOX -- PHÚC HÒA ==== */
+.question-box {
+	border-radius: 8px;
+	position: relative;
+	font-weight: 600;
+	width: 224px;
+	height: 224px;
+	padding: 20px 16px;
+	background: var(--bg-01);
+	color: #000;
+	clip-path: polygon(100% 0, 100% 100%, 10% 100%, 0 90%, 0 0);
+	cursor: pointer;
+	transition: all 0.3s ease-in-out;
+}
+
+.question-box::before {
+	position: absolute;
+	content: "";
+	display: block;
+	left: 0;
+	bottom: 0;
+	width: 22px;
+	height: 22px;
+	background: rgba(0, 0, 0, 0.2);
+	clip-path: polygon(100% 0, 0 0, 100% 100%);
+}
+
+.question-box:hover {
+	transform: scale(1.1);
+}
+
+.question-box__text {
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 5; /* Limit to 5 lines */
+	line-clamp: 5; /* Limit to 5 lines */
+	overflow: hidden;
+	text-overflow: ellipsis;
+	line-height: 1.5; /* Adjust line height as needed */
+	max-height: calc(1.5em * 5); /* 5 lines */
+}
+
+.see-more {
+	color: #1ed760;
+	cursor: pointer;
+}
+
+/* ==== DOTS -- PHÚC HÒA ==== */
+.dots {
+	position: absolute;
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	bottom: 6px;
+	right: 15px;
+}
+
+/* ==== LOADER -- PHÚC HÒA ==== */
+.loader {
+	width: fit-content;
+	height: fit-content;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.truckWrapper {
+	width: 200px;
+	height: 100px;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	align-items: center;
+	justify-content: flex-end;
+	overflow-x: hidden;
+}
+/* truck upper body */
+.truckBody {
+	width: 130px;
+	height: fit-content;
+	margin-bottom: 6px;
+	animation: motion 1s linear infinite;
+}
+/* truck suspension animation*/
+@keyframes motion {
+	0% {
+		transform: translateY(0px);
+	}
+	50% {
+		transform: translateY(3px);
+	}
+	100% {
+		transform: translateY(0px);
+	}
+}
+/* truck's tires */
+.truckTires {
+	width: 130px;
+	height: fit-content;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0px 10px 0px 15px;
+	position: absolute;
+	bottom: 0;
+}
+.truckTires svg {
+	width: 24px;
+}
+
+.road {
+	width: 100%;
+	height: 1.5px;
+	background-color: #282828;
+	position: relative;
+	bottom: 0;
+	align-self: flex-end;
+	border-radius: 3px;
+}
+.road::before {
+	content: "";
+	position: absolute;
+	width: 20px;
+	height: 100%;
+	background-color: #282828;
+	right: -50%;
+	border-radius: 3px;
+	animation: roadAnimation 1.4s linear infinite;
+	border-left: 10px solid white;
+}
+.road::after {
+	content: "";
+	position: absolute;
+	width: 10px;
+	height: 100%;
+	background-color: #282828;
+	right: -65%;
+	border-radius: 3px;
+	animation: roadAnimation 1.4s linear infinite;
+	border-left: 4px solid white;
+}
+
+.lampPost {
+	position: absolute;
+	bottom: 0;
+	right: -90%;
+	height: 90px;
+	animation: roadAnimation 1.4s linear infinite;
+}
+
+@keyframes roadAnimation {
+	0% {
+		transform: translateX(0px);
+	}
+	100% {
+		transform: translateX(-350px);
+	}
 }

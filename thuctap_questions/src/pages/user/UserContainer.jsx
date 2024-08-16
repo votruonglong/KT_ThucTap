@@ -1,9 +1,11 @@
-import React from 'react'
+import QuestionContainer from "../../components/QuestionContainer";
 
 const UserContainer = () => {
-    return (
-        <div>UserContainer</div>
-    )
-}
+	return (
+		<div>
+			<QuestionContainer />
+		</div>
+	);
+};
 
-export default UserContainer
+export default UserContainer;
