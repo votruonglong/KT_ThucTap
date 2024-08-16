@@ -3,18 +3,22 @@ import UserLayout from "./pages/user/UserLayout"
 import AdminLayout from "./pages/admin/AdminLayout";
 import UserContainer from "./pages/user/UserContainer";
 import AdminContainer from "./pages/admin/AdminContainer";
+import '../node_modules/flowbite/dist/flowbite.min.css';
 
 
 function App() {
 
   return (
+    <>
+      <Router>
+        <Routes>
+          <Route path='/' element={<UserLayout><UserContainer />  </UserLayout>} />
+          <Route path='/admin' element={<AdminLayout><AdminContainer />  </AdminLayout>} />
+        </Routes>
+      </Router>
+    </>
 
-    <Router>
-      <Routes>
-        <Route path='/' element={<UserLayout><UserContainer />  </UserLayout>} />
-        <Route path='/admin' element={<AdminLayout><AdminContainer />  </AdminLayout>} />
-      </Routes>
-    </Router>
+
 
   )
 }
