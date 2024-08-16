@@ -78,12 +78,16 @@ a {
 .question-box__text {
 	display: -webkit-box;
 	-webkit-box-orient: vertical;
-	-webkit-line-clamp: 5; /* Limit to 5 lines */
-	line-clamp: 5; /* Limit to 5 lines */
+	-webkit-line-clamp: 5;
+	/* Limit to 5 lines */
+	line-clamp: 5;
+	/* Limit to 5 lines */
 	overflow: hidden;
 	text-overflow: ellipsis;
-	line-height: 1.5; /* Adjust line height as needed */
-	max-height: calc(1.5em * 5); /* 5 lines */
+	line-height: 1.5;
+	/* Adjust line height as needed */
+	max-height: calc(1.5em * 5);
+	/* 5 lines */
 }
 
 .see-more {
@@ -120,6 +124,7 @@ a {
 	justify-content: flex-end;
 	overflow-x: hidden;
 }
+
 /* truck upper body */
 .truckBody {
 	width: 130px;
@@ -127,18 +132,22 @@ a {
 	margin-bottom: 6px;
 	animation: motion 1s linear infinite;
 }
+
 /* truck suspension animation*/
 @keyframes motion {
 	0% {
 		transform: translateY(0px);
 	}
+
 	50% {
 		transform: translateY(3px);
 	}
+
 	100% {
 		transform: translateY(0px);
 	}
 }
+
 /* truck's tires */
 .truckTires {
 	width: 130px;
@@ -150,6 +159,7 @@ a {
 	position: absolute;
 	bottom: 0;
 }
+
 .truckTires svg {
 	width: 24px;
 }
@@ -163,6 +173,7 @@ a {
 	align-self: flex-end;
 	border-radius: 3px;
 }
+
 .road::before {
 	content: "";
 	position: absolute;
@@ -174,6 +185,7 @@ a {
 	animation: roadAnimation 1.4s linear infinite;
 	border-left: 10px solid white;
 }
+
 .road::after {
 	content: "";
 	position: absolute;
@@ -198,7 +210,54 @@ a {
 	0% {
 		transform: translateX(0px);
 	}
+
 	100% {
 		transform: translateX(-350px);
 	}
+}
+
+/* Gia Vĩ */
+#questionForm {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/* height: 100px; */
+}
+
+#questionInput {
+	width: 250px;
+	padding: 8px;
+	border: 1px solid #4b5bb7;
+	border-radius: 4px;
+	font-size: 16px;
+	text-shadow: 0 0 0 #4b5bb7;
+	margin-right: 9px;
+}
+
+#questionInput::placeholder {
+	color: #888;
+	font-size: 13px;
+	opacity: 0.5;
+}
+
+#submitButton {
+	padding: 8px 19px;
+	background-color: #4b5bb7;
+	color: #fff;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 14px;
+	transition: background-color 0.3s ease, transform 0.2s ease;
+	/* độ trễ */
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+#submitButton:hover {
+	background-color: #222b5b;
+	/* Màu đậm hơn */
+	transform: translateY(-1.5px);
+	/* nâng lên */
 }
