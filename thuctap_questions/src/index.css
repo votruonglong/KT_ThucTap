@@ -13,3 +13,45 @@ ul,
 ol {
     list-style: none;
 }
+
+/* Gia Vĩ */
+#questionForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 100px; */
+}
+#questionInput {
+    width: 250px;  
+    padding: 8px;
+    border: 1px solid #4b5bb7;
+    border-radius: 4px;
+    font-size: 16px;
+    text-shadow: 0 0 0 #4b5bb7;  
+    margin-right: 9px; 
+}
+
+#questionInput::placeholder {
+    color: #888; 
+    font-size: 13px; 
+    opacity: 0.5; 
+}
+
+#submitButton {
+    padding: 8px 19px;
+    background-color: #4b5bb7;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px; 
+    transition: background-color 0.3s ease, transform 0.2s ease; /* độ trễ */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+#submitButton:hover {
+    background-color: #222b5b; /* Màu đậm hơn */
+    transform: translateY(-1.5px); /* nâng lên */
+}
