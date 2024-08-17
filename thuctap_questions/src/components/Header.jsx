@@ -26,7 +26,6 @@ const Header = () => {
                         <input
                             className='form-control'
                             placeholder='search questions...' />
-
                     </form>
                 </div>
                 <div className='header-right'>
