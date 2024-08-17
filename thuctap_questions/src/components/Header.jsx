@@ -40,8 +40,6 @@ const Header = () => {
         navigate('/')
     }
 
-
-    handleredirect_admin();
     return (
         <>
             {isDesktop == true ? (
@@ -90,13 +88,6 @@ const Header = () => {
                         <a href="#" className="flex items-center space-x-3 rtl:space-x-reverse">
                             <img src={logo} className="h-8" alt="Amazing Tech Logo" />
                         </a>
-                        <div className='header-center'>
-                            <form>
-                                <input
-                                    className='form-control'
-                                    placeholder='search questions...' />
-                            </form>
-                        </div>
                         <button data-collapse-toggle="navbar-hamburger" type="button" className="inline-flex items-center justify-center p-2 w-10 h-10 text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-hamburger" aria-expanded="false">
                             <span className="sr-only">Open main menu</span>
                             <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
