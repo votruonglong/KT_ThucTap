@@ -3,13 +3,17 @@ import { useState, useRef, useEffect } from "react";
 import Dot from "./Dot";
 import ShowQuestionModal from "./ShowQuestionModal";
 import EditQuestionModal from "./EditQuestionModal";
+import axios from "axios";
+import { MainAPI } from "../MainAPI";
 
 const QuestionBox = ({ question, bgColor, onDelete }) => {
 	const textRef = useRef(null);
 	const [showSeeMore, setShowSeeMore] = useState(false);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+	const [likes, setLikes] = useState(question.numberOfLikes);
 
+	// KIỂM TRA SỐ LƯỢNG DÒNG CỦA CÂU HỎI
 	useEffect(() => {
 		if (textRef.current) {
 			const lineHeight = parseInt(
@@ -29,7 +33,7 @@ const QuestionBox = ({ question, bgColor, onDelete }) => {
 	};
 
 	const handleEditButtonClick = (event) => {
-		event.stopPropagation();
+		event.stopPropagation(); // Ngăn chặn sự kiện click lan truyền lên thẻ cha
 		setIsEditModalOpen(true);
 		document.body.classList.add("no-scroll");
 	};
@@ -49,6 +53,21 @@ const QuestionBox = ({ question, bgColor, onDelete }) => {
 		onDelete(question.id);
 	};
 
+	// Điều chỉnh số lượng like cho câu hỏi dùng axios put
+	const handleLikeClick = async (event) => {
+		event.stopPropagation();
+		const newLikes = likes + 1;
+		setLikes(newLikes);
+
+		try {
+			await axios.put(`${MainAPI}/${question.id}`, {
+				numberOfLikes: newLikes,
+			});
+		} catch (error) {
+			console.error("Failed to update likes", error);
+		}
+	};
+
 	return (
 		<>
 			<div
@@ -56,17 +75,19 @@ const QuestionBox = ({ question, bgColor, onDelete }) => {
 				style={{ backgroundColor: bgColor }}
 				onClick={handleBoxClick}
 			>
+				{/* ==== EDIT BUTTON ==== */}
 				<span
 					className="edit-btn-cover"
 					onClick={handleEditButtonClick}
 				>
 					<button className="edit-btn">
-						Edit
+						Sửa
 						<svg className="edit-icon" viewBox="0 0 512 512">
 							<path d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z"></path>
 						</svg>
 					</button>
 				</span>
+				{/* ==== DELETE BUTTON ==== */}
 				<span className="del-btn-cover" onClick={handleDeleteClick}>
 					<button className="del-btn">
 						<svg viewBox="0 0 448 512" className="del-icon">
@@ -77,60 +98,41 @@ const QuestionBox = ({ question, bgColor, onDelete }) => {
 				<p ref={textRef} className="question-box__text">
 					{question.question}
 				</p>
+				{/* NẾU CÂU HỎI QUÁ DÀI SẼ THAY THẾ BẰNG DÒNG CHỮ NÀY */}
 				{showSeeMore && <span className="see-more">Xem thêm</span>}
 				<div className="dots">
-					{[...Array(9)].map((_, index) => (
+					{[...Array(3)].map((_, index) => (
 						<Dot key={index} />
 					))}
 				</div>
-				<span
-					className="heart-btn-cover"
-					onClick={(e) => e.stopPropagation()}
+				{/* ==== HEART BUTTON ==== */}
+				<button
+					type="button"
+					className="heart-btn"
+					onClick={handleLikeClick}
 				>
-					<div className="heart-btn" title="Like">
-						<input
-							type="checkbox"
-							className="checkbox"
-							id="Give-It-An-Id"
-						/>
-						<div className="heart-icon-cover">
-							<svg
-								viewBox="0 0 24 24"
-								className="heart-icon-outline"
-								xmlns="http://www.w3.org/2000/svg"
-							>
-								<path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Zm-3.585,18.4a2.973,2.973,0,0,1-3.83,0C4.947,16.006,2,11.87,2,8.967a4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,11,8.967a1,1,0,0,0,2,0,4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,22,8.967C22,11.87,19.053,16.006,13.915,20.313Z"></path>
-							</svg>
-							<svg
-								viewBox="0 0 24 24"
-								className="heart-icon-filled"
-								xmlns="http://www.w3.org/2000/svg"
-							>
-								<path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Z"></path>
-							</svg>
-							<svg
-								className="heart-icon-celebrate"
-								width={100}
-								height={100}
-								xmlns="http://www.w3.org/2000/svg"
-							>
-								<polygon points="10,10 20,20" />
-								<polygon points="10,50 20,50" />
-								<polygon points="20,80 30,70" />
-								<polygon points="90,10 80,20" />
-								<polygon points="90,50 80,50" />
-								<polygon points="80,80 70,70" />
-							</svg>
-						</div>
-					</div>
-				</span>
+					<span className="heart-btn-left">
+						<svg
+							fill="white"
+							viewBox="0 0 512 512"
+							height="1em"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z" />
+						</svg>
+						<span className="like">Like</span>
+					</span>
+					<span className="heart-btn-like">{likes}</span>
+				</button>
 			</div>
+			{/* ==== SHOW MODAL ==== */}
 			{isModalOpen && (
 				<ShowQuestionModal
 					question={question.question}
 					onClose={handleCloseModal}
 				/>
 			)}
+			{/* ==== EDIT MODAL ==== */}
 			{isEditModalOpen && (
 				<EditQuestionModal
 					question={question.question}

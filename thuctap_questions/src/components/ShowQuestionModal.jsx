@@ -10,9 +10,6 @@ const ShowQuestionModal = ({ question, onClose }) => {
 	return (
 		<div className="modal-overlay" onClick={handleOverlayClick}>
 			<div className="modal-content">
-				{/* <span className="close-button" onClick={onClose}>
-					&times;
-				</span> */}
 				<button className="close-button" onClick={onClose}>
 					<span className="text">Close</span>
 					<span className="icon">
@@ -27,7 +24,7 @@ const ShowQuestionModal = ({ question, onClose }) => {
 					</span>
 				</button>
 
-				<h2>Question Details</h2>
+				<h2>Câu hỏi</h2>
 				<p>{question}</p>
 			</div>
 		</div>

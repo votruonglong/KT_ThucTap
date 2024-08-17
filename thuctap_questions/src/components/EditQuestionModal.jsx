@@ -10,9 +10,6 @@ const EditQuestionModal = ({ question, onClose }) => {
 	return (
 		<div className="modal-overlay" onClick={handleOverlayClick}>
 			<form className="modal-content">
-				{/* <span className="close-button" onClick={onClose}>
-					&times;
-				</span> */}
 				<button className="close-button" onClick={onClose}>
 					<span className="text">Đóng</span>
 					<span className="icon">
@@ -31,7 +28,7 @@ const EditQuestionModal = ({ question, onClose }) => {
 					htmlFor="question-edit"
 					style={{ fontSize: "24px", fontWeight: "bold" }}
 				>
-					Chỉnh sửa câu hỏi
+					Chỉnh sửa
 				</label>
 				<textarea
 					style={{
