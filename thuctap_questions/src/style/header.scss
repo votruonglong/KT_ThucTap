@@ -2,6 +2,38 @@
     font-family: 'Times New Roman', Times, serif;
 }
 
+.hover\:bg-gray-100:hover {
+    --tw-bg-opacity: 1;
+}
+
+.text-gray-500 {
+    --tw-text-opacity: 1;
+    color            : rgb(22 22 22) !important;
+}
+
+
+.hover-link-menu {
+    color        : #FFC107;
+    display      : block;
+    height       : 40px;
+    padding-left : 10px;
+    border-radius: 5px;
+    line-height  : 40px;
+
+    &:hover {
+        cursor          : pointer;
+        color           : white;
+        background-color: #49bce2;
+    }
+}
+
+.text-sm {
+    color      : black !important;
+    font-size  : .875rem;
+    line-height: 1.25rem;
+    border     : 1px solid black !important;
+}
+
 .home-header-container {
     display        : flex;
     gap            : 10px;
@@ -248,15 +280,11 @@
 
     .dropdown-content {
         width: 100%;
-        /* Chiếm toàn bộ chiều rộng */
     }
 
     .dropdown-content span {
         width        : 100%;
-        /* Chiếm toàn bộ chiều rộng */
         text-align   : center;
-        /* Canh giữa nội dung dropdown */
         border-bottom: 1px solid #ccc;
-        /* Thêm đường kẻ dưới giữa các phần từ */
     }
 }
