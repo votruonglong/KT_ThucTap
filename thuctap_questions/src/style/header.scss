@@ -151,11 +151,112 @@
     }
 }
 
-/* Screen for SP */
-@media only screen and (max-width: 640px) and (min-width: 280px) {
+@media only screen and (max-width: 640px) and (min-width: 381px) {
     .home-header-container {
-        position: static;
-        width   : 100%;
-        z-index : unset;
+        padding: 0 10px;
+        display: inline-block;
+        width  : auto;
+        height : 100%;
+    }
+
+    .header-left,
+    .header-center,
+    .header-right {
+        gap       : 60px;
+        height    : auto;
+        width     : 100%;
+        text-align: center;
+        padding   : 0px;
+    }
+
+    .header-center {
+        margin-top: 10px;
+    }
+
+    .support,
+    .logout {
+        padding: 5px 10px;
+    }
+
+    .dropdown {
+        display: block;
+        margin : 10px auto;
+    }
+
+    .home-header-container .header-center .form-control {
+        width        : 100%;
+        margin       : 10px 0px;
+        border-radius: 10px;
+        padding-left : 10px;
+    }
+
+    .dropdown-content {
+        width: 100%;
+    }
+
+    .dropdown-content span {
+        width        : 100%;
+        text-align   : center;
+        border-bottom: 1px solid #ccc;
+    }
+}
+
+/* Screen for SP */
+@media only screen and (max-width: 380px) and (min-width: 280px) {
+    .home-header-container {
+        padding: 0 10px;
+        display: inline-block;
+        width  : auto;
+        height : 100%;
+    }
+
+    .header-left,
+    .header-center,
+    .header-right {
+        height    : auto;
+        width     : 100%;
+        text-align: center;
+        padding   : 0px;
+        gap       : 50px;
+
+    }
+
+    .header-center {
+        margin-top: 10px;
+
+        .form-control {
+            width        : 100% !important;
+            margin       : 10px 0px;
+            border-radius: 10px;
+            padding-left : 10px;
+            font-size    : 16px;
+        }
+    }
+
+    .support,
+    .logout {
+        padding: 5px 10px;
+        /* Thêm padding cho các phần tử */
+    }
+
+    .dropdown {
+        display: block;
+        /* Hiển thị dropdown theo chiều dọc */
+        margin : 10px auto;
+        /* Canh giữa dropdown */
+    }
+
+    .dropdown-content {
+        width: 100%;
+        /* Chiếm toàn bộ chiều rộng */
+    }
+
+    .dropdown-content span {
+        width        : 100%;
+        /* Chiếm toàn bộ chiều rộng */
+        text-align   : center;
+        /* Canh giữa nội dung dropdown */
+        border-bottom: 1px solid #ccc;
+        /* Thêm đường kẻ dưới giữa các phần từ */
     }
 }
