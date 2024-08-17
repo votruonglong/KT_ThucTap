@@ -16,42 +16,83 @@ ol {
 
 /* Gia Vĩ */
 #questionForm {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* height: 100px; */
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
+
 #questionInput {
-    width: 250px;  
-    padding: 8px;
-    border: 1px solid #4b5bb7;
-    border-radius: 4px;
-    font-size: 16px;
-    text-shadow: 0 0 0 #4b5bb7;  
-    margin-right: 9px; 
+	width: 495px;
+	padding: 9.9px;
+    border:0;
+    outline: 2px solid #58184c;
+    background: linear-gradient(135deg, #D0E3F4, #FFEBCC); 
+	border-radius: 6.7px;
+	font-size: 16px;
+	text-shadow: 0 0 0 #4b5bb7;
+	margin-right: 9px;
 }
 
 #questionInput::placeholder {
-    color: #888; 
-    font-size: 13px; 
-    opacity: 0.5; 
+	color: #888;
+	font-size: 13px;
+	opacity: 1;
+}
+#questionInput:hover{
+    background: #fff;
 }
 
-#submitButton {
-    padding: 8px 19px;
-    background-color: #4b5bb7;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
+
+.button {
     cursor: pointer;
-    font-size: 14px; 
-    transition: background-color 0.3s ease, transform 0.2s ease; /* độ trễ */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    padding: 9.9px 21px;
+    font-size: 16px;
+    color: #2B3044;
+    border: 2px solid #58184c;
+	border-radius: 11px;
+    background-color: transform;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+    overflow: hidden;
     text-transform: uppercase;
-    font-weight: bold;
-}
+	font-weight: bold;
+  }
+  
+  .button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 50px;
+    height: 50px;
+    border-radius: inherit;
+    scale: 0;
+    z-index: -1;
+    background: linear-gradient(77deg, #58184c, #4b5bb7);
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+  }
+  
+  .button:hover::before {
+    scale: 3;
+  }
+  
+  .button:hover {
+    color: #ffffff;
+    border: 1px solid #58184c;
+    scale: 1.1;
+    box-shadow: 0 0px 20px rgba(193, 163, 98,0.4);
+  }
+  
+  .button:active {
+    scale: 1;
+  }
+  
 
-#submitButton:hover {
-    background-color: #222b5b; /* Màu đậm hơn */
-    transform: translateY(-1.5px); /* nâng lên */
+#errorMessage {
+    color:  #D9534F;
+    font-size: 12px;
+    margin-top: 3px;
+	margin-right:333.3px;
+	text-align: center;
 }
