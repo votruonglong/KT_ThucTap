@@ -12,6 +12,10 @@
     /* justify-content: center; */
     align-items: center;
 }
+.mb-6 {
+  border: none !important;
+  margin-bottom: 1.5rem;
+}
 .max-w-screen-xl {
   max-width: 100% !important;
 }
