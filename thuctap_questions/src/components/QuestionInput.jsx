@@ -37,7 +37,7 @@ const QuestionForm = () => {
                     onChange={handleInput}
                     required
                 />
-                <button className="button">
+                <button id="button">
                 Gửi
                 </button>         
             </form>

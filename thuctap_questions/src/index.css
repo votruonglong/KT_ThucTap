@@ -43,7 +43,7 @@ ol {
 }
 
 
-.button {
+#button {
     cursor: pointer;
     position: relative;
     padding: 9.9px 21px;
@@ -59,7 +59,7 @@ ol {
 	font-weight: bold;
   }
   
-  .button::before {
+  #button::before {
     content: '';
     position: absolute;
     inset: 0;
@@ -73,18 +73,18 @@ ol {
     transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
   }
   
-  .button:hover::before {
+  #button:hover::before {
     scale: 3;
   }
   
-  .button:hover {
+  #button:hover {
     color: #ffffff;
     border: 1px solid #58184c;
     scale: 1.1;
     box-shadow: 0 0px 20px rgba(193, 163, 98,0.4);
   }
   
-  .button:active {
+  #button:active {
     scale: 1;
   }
   
