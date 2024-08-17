@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import QuestionBox from "./QuestionBox";
 import Loader from "./Loader";
 import { MainAPI } from "../MainAPI";
+import { toast } from "react-toastify";
 
 const QuestionContainer = () => {
 	const [questions, setQuestions] = useState([]);
@@ -15,30 +16,47 @@ const QuestionContainer = () => {
 		"var(--bg-05)",
 	];
 
+	const fetchQuestions = async () => {
+		try {
+			setIsLoading(true);
+			setError("");
+
+			const response = await fetch(MainAPI);
+
+			if (!response.ok) throw new Error("Failed to fetch questions");
+
+			const data = await response.json();
+
+			setQuestions(data);
+			setError("");
+		} catch (error) {
+			console.error(error);
+			setError(error.message);
+		} finally {
+			setIsLoading(false);
+		}
+	};
+
 	useEffect(() => {
-		const fetchQuestions = async () => {
-			try {
-				setIsLoading(true);
-				setError("");
-
-				const response = await fetch(MainAPI);
-
-				if (!response.ok) throw new Error("Failed to fetch questions");
-
-				const data = await response.json();
-
-				setQuestions(data);
-				setError("");
-			} catch (error) {
-				console.error(error);
-				setError(error.message);
-			} finally {
-				setIsLoading(false);
-			}
-		};
-
 		fetchQuestions();
 	}, []);
+
+	const handleDelete = (id) => {
+		const confirmed = window.confirm(
+			"Are you sure you want to delete this item ?"
+		);
+
+		if (confirmed) {
+			fetch(`${MainAPI}/${id}`, {
+				method: "DELETE",
+			}).then(() => {
+				toast.success("Delete successfully!!", {
+					autoClose: 3000,
+				});
+				fetchQuestions();
+			});
+		}
+	};
 
 	return (
 		<div className="question-container">
@@ -51,6 +69,7 @@ const QuestionContainer = () => {
 						key={index}
 						question={question}
 						bgColor={colors[index % colors.length]}
+						onDelete={handleDelete}
 					/>
 				))}
 		</div>
