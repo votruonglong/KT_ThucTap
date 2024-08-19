@@ -765,7 +765,7 @@ body.no-scroll {
 	width: 500px;
 	height: 600px;
 	background-color: white;
-	position: fixed;
+	position: absolute;
 	left: 35%;
 	top: 20%;
 	border-radius: 14px;
@@ -854,9 +854,7 @@ body.no-scroll {
 }
 
 .form {
-	position: absolute;
-	bottom: 60px;
-	width: 90%;
+	padding-left: 10px;
 }
 
 textarea {
@@ -892,9 +890,6 @@ form button {
 	border: 1px solid #c2c2c2;
 }
 
-.formButton {
-	margin-top: 10px;
-}
 
 form button:hover,
 form button:focus {
@@ -955,4 +950,21 @@ form div {
 .modalContent {
 	height: 100%;
 	z-index: 9999;
+}
+
+@media (max-width: 768px) {
+	.answerContainer {
+		width: 80%;
+		left: 10%;
+	}
+
+	.form {
+		padding-top: 10px;
+		padding-left: 10px;
+		bottom: 30px;
+	}
+
+	.answerFooter {
+		display: none;
+	}
 }
