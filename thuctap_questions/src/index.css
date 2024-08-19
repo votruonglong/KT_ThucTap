@@ -43,6 +43,7 @@ a {
 	padding: 100px 32px 32px;
 	border-radius: 8px;
 	box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.1);
+	z-index: 1;
 }
 
 .radio-inputs-cover {
@@ -753,4 +754,28 @@ body.no-scroll {
 	margin-top: 3px;
 	margin-right: 333.3px;
 	text-align: center;
+}
+
+/* Answer component */
+.question {
+	position: relative;
+}
+
+.answerContainer {
+	width: 500px;
+	height: 600px;
+	background-color: white;
+	position: absolute;
+	left: 35%;
+	top: 20%;
+	z-index: 2;
+	border-radius: 14px;
+}
+
+.answerHeader {
+	height: 60px;
+	border-bottom: 1px solid rgb(212, 212, 212);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
