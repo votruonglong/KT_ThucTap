@@ -785,6 +785,7 @@ body.no-scroll {
 	cursor: pointer;
 	position: relative;
 	padding: 9.9px 21px;
+	margin-top:4.8px;
 	font-size: 16px;
 	color: #2B3044;
 	border: 2px solid #58184c;
@@ -818,7 +819,7 @@ body.no-scroll {
 #button:hover {
 	color: #ffffff;
 	border: 1px solid #58184c;
-	scale: 1.1;
+	scale: 1;
 	box-shadow: 0 0px 20px rgba(193, 163, 98, 0.4);
 }
 
