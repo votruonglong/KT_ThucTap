@@ -11,7 +11,7 @@ const ShowQuestionModal = ({ question, onClose }) => {
 		<div className="modal-overlay" onClick={handleOverlayClick}>
 			<div className="modal-content">
 				<button className="close-button" onClick={onClose}>
-					<span className="text">Close</span>
+					<span className="text">Đóng</span>
 					<span className="icon">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -25,14 +25,32 @@ const ShowQuestionModal = ({ question, onClose }) => {
 				</button>
 
 				<h2>Câu hỏi</h2>
-				<p>{question}</p>
+				<p>{question.question}</p>
+				{question.isAnswer && (
+					<div>
+						<h2 style={{ color: "limegreen", fontWeight: "bold" }}>
+							Câu trả lời
+						</h2>
+						<p
+							style={{
+								padding: "5px 10px",
+								border: "2px dotted limegreen",
+								borderRadius: "5px",
+								fontWeight: "600",
+								background: "#eee",
+							}}
+						>
+							{question.answer}
+						</p>
+					</div>
+				)}
 			</div>
 		</div>
 	);
 };
 
 ShowQuestionModal.propTypes = {
-	question: PropTypes.string.isRequired,
+	question: PropTypes.object.isRequired,
 	onClose: PropTypes.func.isRequired,
 };
 

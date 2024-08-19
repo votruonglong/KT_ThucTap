@@ -117,10 +117,11 @@ a {
 	display: block;
 	left: 0;
 	bottom: 0;
-	width: 22px;
+	width: 22px; /* Tăng kích thước để đảm bảo che phủ toàn bộ */
 	height: 22px;
 	background: rgba(0, 0, 0, 0.2);
 	clip-path: polygon(100% 0, 0 0, 100% 100%);
+	border-radius: 0 0 0 8px; /* Điều chỉnh cho khớp với góc bo */
 }
 
 .question-box::after {
@@ -129,13 +130,12 @@ a {
 	display: block;
 	left: 0;
 	bottom: 0;
-	width: 22px;
-	height: 22px;
+	width: 24px;
+	height: 24px;
 	background: #fff;
-	outline: #fff;
-	border: #fff;
 	border-radius: 0 0 0 8px;
 	clip-path: polygon(0 0, 0% 100%, 100% 100%);
+	transform: translateY(1px) translateX(-1px); /* Đẩy pseudo-element lên trên một chút để che màu nền */
 }
 
 .question-box:hover {
@@ -159,7 +159,7 @@ a {
 
 /* 2. See more text */
 .see-more {
-	color: #1ed760;
+	color: limegreen;
 	cursor: pointer;
 	font-size: 14px;
 }
@@ -282,7 +282,6 @@ a {
 }
 
 /* 5. Heart button */
-/* From Uiverse.io by vinodjangid07 */
 .heart-btn {
 	position: absolute;
 	left: 16px;
@@ -348,6 +347,86 @@ a {
 .heart-btn:active .heart-btn-left svg {
 	transform: scale(1.15);
 	transform-origin: top;
+}
+
+/* 6. CHeck mark */
+.check-mark-cover {
+	position: absolute;
+	bottom: 26px;
+	right: 20px;
+	width: 26px;
+	height: 26px;
+	border-radius: 50%;
+	background: limegreen;
+	transition: all 0.4s ease-in-out;
+}
+
+.check-mark-cover:hover {
+	box-shadow: 0.1em 0.1em 0.3em 0 rgba(0, 0, 0, 0.3);
+}
+
+.check-mark {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.check-mark-tooltip {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	width: 110px;
+	transform: translateX(-50%);
+	padding: 0.3em 0.1em;
+	opacity: 0;
+	pointer-events: none;
+	transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+	background: #fff;
+	text-align: center;
+	z-index: 5;
+	border: 1px solid limegreen;
+	border-radius: 8px;
+	scale: 0;
+	transform-origin: 0 0;
+	text-transform: capitalize;
+	font-weight: 600;
+	font-size: 12px;
+	color: limegreen;
+	box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+}
+
+.check-mark-cover:hover .check-mark-tooltip {
+	top: -35px;
+	opacity: 1;
+	visibility: visible;
+	pointer-events: auto;
+	scale: 1;
+	animation: shake 0.5s ease-in-out both;
+}
+
+@keyframes shake {
+	0% {
+		rotate: 0;
+	}
+
+	25% {
+		rotate: 7deg;
+	}
+
+	50% {
+		rotate: -7deg;
+	}
+
+	75% {
+		rotate: 1deg;
+	}
+
+	100% {
+		rotate: 0;
+	}
 }
 
 /* ==== DOTS -- PHÚC HÒA ==== */

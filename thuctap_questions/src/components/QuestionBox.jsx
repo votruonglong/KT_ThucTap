@@ -23,8 +23,15 @@ const QuestionBox = ({ question, bgColor, onDelete }) => {
 			const maxHeight = lineHeight * 5; // 5 lines
 			if (textRef.current.scrollHeight > maxHeight) {
 				setShowSeeMore(true);
+			} else {
+				setShowSeeMore(false);
 			}
 		}
+	}, [question]);
+
+	// Cập nhật state likes khi question thay đổi
+	useEffect(() => {
+		setLikes(question.numberOfLikes);
 	}, [question]);
 
 	const handleBoxClick = () => {
@@ -124,11 +131,35 @@ const QuestionBox = ({ question, bgColor, onDelete }) => {
 					</span>
 					<span className="heart-btn-like">{likes}</span>
 				</button>
+				{/* ==== CHECK MARK ==== */}
+				{question.isAnswer && (
+					<div className="check-mark-cover">
+						<div className="check-mark">
+							<div className="check-mark-tooltip">
+								Đã có câu trả lời
+							</div>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width={18}
+								height={18}
+								viewBox="0 0 24 24"
+								style={{
+									fill: "rgba(255,255,255,1)",
+									transform: "",
+									msfilter: "",
+									fontWeight: "bold",
+								}}
+							>
+								<path d="m10 15.586-3.293-3.293-1.414 1.414L10 18.414l9.707-9.707-1.414-1.414z" />
+							</svg>
+						</div>
+					</div>
+				)}
 			</div>
 			{/* ==== SHOW MODAL ==== */}
 			{isModalOpen && (
 				<ShowQuestionModal
-					question={question.question}
+					question={question}
 					onClose={handleCloseModal}
 				/>
 			)}
