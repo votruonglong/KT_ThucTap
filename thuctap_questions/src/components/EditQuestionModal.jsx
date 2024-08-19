@@ -10,26 +10,17 @@ const EditQuestionModal = ({ question, onClose }) => {
 	return (
 		<div className="modal-overlay" onClick={handleOverlayClick}>
 			<form className="modal-content">
-				<button className="close-button" onClick={onClose}>
-					<span className="text">Đóng</span>
-					<span className="icon">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							width={24}
-							height={24}
-							viewBox="0 0 24 24"
-						>
-							<path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z" />
-						</svg>
-					</span>
-				</button>
-
-				<label
-					htmlFor="question-edit"
-					style={{ fontSize: "24px", fontWeight: "bold" }}
-				>
-					Chỉnh sửa
-				</label>
+				<div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+					<h2>Chỉnh sửa</h2>
+					<button className="close-button" onClick={onClose}>
+						<span className="text">Đóng</span>
+						<span className="icon">
+							<svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24">
+								<path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z" />
+							</svg>
+						</span>
+					</button>
+				</div>
 				<textarea
 					style={{
 						width: "100%",
@@ -38,6 +29,7 @@ const EditQuestionModal = ({ question, onClose }) => {
 						fontSize: "1rem",
 						padding: "0.5rem",
 						borderRadius: "5px",
+						margin: "10px 0",
 					}}
 					name="question-edit"
 					id="question-edit"
@@ -45,22 +37,13 @@ const EditQuestionModal = ({ question, onClose }) => {
 					{question}
 				</textarea>
 				<div className="save-btn-cover">
-					<button
-						type="button"
-						className="cancel-btn"
-						onClick={onClose}
-					>
+					<button type="button" className="cancel-btn" onClick={onClose}>
 						<span>Hủy</span>
 					</button>
 					<button type="submit" className="save-btn">
 						<div>
 							<div className="save-btn-icon-cover">
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									viewBox="0 0 24 24"
-									width={18}
-									height={18}
-								>
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={18} height={18}>
 									<path fill="none" d="M0 0h24v24H0z" />
 									<path
 										fill="currentColor"

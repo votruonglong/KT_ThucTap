@@ -87,22 +87,11 @@ const RadioInputs = ({ questions, setFilteredQuestions }) => {
 			<div className="radio-inputs">
 				{radioOptions.map((option, index) => (
 					<label key={index} className="radio">
-						<input
-							type="radio"
-							name="radio"
-							defaultChecked={option.defaultChecked}
-							onChange={() => handleFilter(option)}
-						/>
+						<input type="radio" name="radio" defaultChecked={option.defaultChecked} onChange={() => handleFilter(option)} />
 						<span className="name">
 							{option.svgs.length === 0 && option.text}
 							{option.svgs.map((svg, svgIndex) => (
-								<svg
-									key={svgIndex}
-									fill={svg.fill}
-									viewBox={svg.viewBox}
-									width={svg.width}
-									xmlns="http://www.w3.org/2000/svg"
-								>
+								<svg key={svgIndex} fill={svg.fill} viewBox={svg.viewBox} width={svg.width} xmlns="http://www.w3.org/2000/svg">
 									<path
 										d={svg.path}
 										stroke={svg.stroke}

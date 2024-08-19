@@ -7,7 +7,7 @@ import axios from "axios";
 import { MainAPI } from "../MainAPI";
 import Answer from "./Answer";
 
-const QuestionBox = ({ question, bgColor, onDelete, isAdmin }) => {
+const QuestionBox = ({ question, bgColor, onDelete, isAdmin, fetchQuestions }) => {
 	const textRef = useRef(null);
 	const [showSeeMore, setShowSeeMore] = useState(false);
 	const [isModalOpen, setIsModalOpen] = useState(false);
@@ -18,10 +18,7 @@ const QuestionBox = ({ question, bgColor, onDelete, isAdmin }) => {
 	// KIỂM TRA SỐ LƯỢNG DÒNG CỦA CÂU HỎI
 	useEffect(() => {
 		if (textRef.current) {
-			const lineHeight = parseInt(
-				window.getComputedStyle(textRef.current).lineHeight,
-				10
-			);
+			const lineHeight = parseInt(window.getComputedStyle(textRef.current).lineHeight, 10);
 			const maxHeight = lineHeight * 5; // 5 lines
 			if (textRef.current.scrollHeight > maxHeight) {
 				setShowSeeMore(true);
@@ -42,7 +39,7 @@ const QuestionBox = ({ question, bgColor, onDelete, isAdmin }) => {
 	};
 
 	const handleBoxAdminClick = () => {
-		console.log("click")
+		console.log("click");
 		setIsModalAdminOpen(true);
 		document.body.classList.add("no-scroll");
 	};
@@ -62,8 +59,6 @@ const QuestionBox = ({ question, bgColor, onDelete, isAdmin }) => {
 		setIsModalOpen(false);
 		document.body.classList.remove("no-scroll");
 	};
-
-
 
 	const handleCloseEditModal = () => {
 		setIsEditModalOpen(false);
@@ -92,16 +87,9 @@ const QuestionBox = ({ question, bgColor, onDelete, isAdmin }) => {
 
 	return (
 		<>
-			<div
-				className="question-box"
-				style={{ backgroundColor: bgColor }}
-				onClick={isAdmin === true ? handleBoxAdminClick : handleBoxClick}
-			>
+			<div className="question-box" style={{ backgroundColor: bgColor }} onClick={isAdmin === true ? handleBoxAdminClick : handleBoxClick}>
 				{/* ==== EDIT BUTTON ==== */}
-				<span
-					className="edit-btn-cover"
-					onClick={handleEditButtonClick}
-				>
+				<span className="edit-btn-cover" onClick={handleEditButtonClick}>
 					<button className="edit-btn">
 						Sửa
 						<svg className="edit-icon" viewBox="0 0 512 512">
@@ -128,18 +116,9 @@ const QuestionBox = ({ question, bgColor, onDelete, isAdmin }) => {
 					))}
 				</div>
 				{/* ==== HEART BUTTON ==== */}
-				<button
-					type="button"
-					className="heart-btn"
-					onClick={handleLikeClick}
-				>
+				<button type="button" className="heart-btn" onClick={handleLikeClick}>
 					<span className="heart-btn-left">
-						<svg
-							fill="white"
-							viewBox="0 0 512 512"
-							height="1em"
-							xmlns="http://www.w3.org/2000/svg"
-						>
+						<svg fill="white" viewBox="0 0 512 512" height="1em" xmlns="http://www.w3.org/2000/svg">
 							<path d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z" />
 						</svg>
 						<span className="like">Like</span>
@@ -150,9 +129,7 @@ const QuestionBox = ({ question, bgColor, onDelete, isAdmin }) => {
 				{question.isAnswer && (
 					<div className="check-mark-cover">
 						<div className="check-mark">
-							<div className="check-mark-tooltip">
-								Đã có câu trả lời
-							</div>
+							<div className="check-mark-tooltip">Đã có câu trả lời</div>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								width={18}
@@ -172,12 +149,7 @@ const QuestionBox = ({ question, bgColor, onDelete, isAdmin }) => {
 				)}
 			</div>
 			{/* ==== SHOW MODAL ==== */}
-			{isModalOpen && (
-				<ShowQuestionModal
-					question={question}
-					onClose={handleCloseModal}
-				/>
-			)}
+			{isModalOpen && <ShowQuestionModal question={question} onClose={handleCloseModal} />}
 			{isModalAdminOpen && (
 				<Answer
 					question={question.question}
@@ -185,15 +157,11 @@ const QuestionBox = ({ question, bgColor, onDelete, isAdmin }) => {
 					answer={question.answer}
 					show={isModalAdminOpen}
 					onClose={handleCloseAdminModal}
+					fetchQuestions={fetchQuestions}
 				/>
 			)}
 			{/* ==== EDIT MODAL ==== */}
-			{isEditModalOpen && (
-				<EditQuestionModal
-					question={question.question}
-					onClose={handleCloseEditModal}
-				/>
-			)}
+			{isEditModalOpen && <EditQuestionModal question={question.question} onClose={handleCloseEditModal} />}
 		</>
 	);
 };
@@ -202,6 +170,8 @@ QuestionBox.propTypes = {
 	question: PropTypes.object.isRequired,
 	bgColor: PropTypes.string.isRequired,
 	onDelete: PropTypes.func.isRequired,
+	isAdmin: PropTypes.bool,
+	fetchQuestions: PropTypes.func,
 };
 
 export default QuestionBox;
