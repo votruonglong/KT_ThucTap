@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import QuestionBox from "./QuestionBox";
+import QuestionForm from "./QuestionInput";
 import Loader from "./Loader";
 import { MainAPI } from "../MainAPI";
 import { toast } from "react-toastify";
@@ -58,10 +59,43 @@ const QuestionContainer = () => {
 		}
 	};
 
+	// ADD QUESTION
+	const handleAddQuestion = async (newQuestion) => {
+		const newQuestionObject = {
+			question: newQuestion,
+			numberOfLikes: 0,
+			answer: true,
+			isAnswer: true
+		};
+	
+		try {
+			const response = await fetch(MainAPI, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(newQuestionObject),
+			});
+	
+			if (!response.ok) {
+				throw new Error("Thêm câu hỏi thất bại");
+			}
+			toast.success("Thêm câu hỏi thành công!!", {autoClose: 2000,});
+	
+			fetchQuestions();
+		} catch (error) {
+			console.error("Lỗi khi thêm câu hỏi:", error);
+			toast.error("Xảy ra lỗi khi thêm câu hỏi.", {autoClose: 2000,});
+		}
+	};
+	
+	
 	const sortedQuestions = [...questions].sort((a, b) => b.id - a.id);
 
 	return (
-		<div className="question-container">
+		<div>
+			<QuestionForm addQuestion={handleAddQuestion} />
+		<div className="question-container">	  
 			<span className="radio-inputs-cover">
 				<div className="radio-inputs">
 					<label className="radio">
@@ -144,6 +178,7 @@ const QuestionContainer = () => {
 						onDelete={handleDelete}
 					/>
 				))}
+		</div>
 		</div>
 	);
 };
