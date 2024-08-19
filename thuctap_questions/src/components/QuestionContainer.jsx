@@ -5,9 +5,11 @@ import Loader from "./Loader";
 import { MainAPI } from "../MainAPI";
 import { toast } from "react-toastify";
 import Answer from "./Answer";
+import RadioInputs from "./RadioInputs";
 
 const QuestionContainer = ({ isAdmin }) => {
 	const [questions, setQuestions] = useState([]);
+	const [filteredQuestions, setFilteredQuestions] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState("");
 	const colors = [
@@ -18,6 +20,7 @@ const QuestionContainer = ({ isAdmin }) => {
 		"var(--bg-05)",
 	];
 
+	// Fetch questions from API
 	const fetchQuestions = async () => {
 		try {
 			setIsLoading(true);
@@ -29,9 +32,11 @@ const QuestionContainer = ({ isAdmin }) => {
 
 			const data = await response.json();
 
-			setQuestions(data);
-			console.log(data);
+			// Sort data by id in descending order
+			const sortedData = data.sort((a, b) => b.id - a.id);
 
+			setQuestions(sortedData);
+			setFilteredQuestions(sortedData);
 			setError("");
 		} catch (error) {
 			console.error(error);
@@ -45,7 +50,22 @@ const QuestionContainer = ({ isAdmin }) => {
 		fetchQuestions();
 	}, []);
 
+	// Handle delete question
 	const handleDelete = (id) => {
+		const questionToDelete = questions.find(
+			(question) => question.id === id
+		);
+
+		if (questionToDelete.isAnswer) {
+			toast.info(
+				"Bạn không thể xóa câu hỏi này vì đã có người trả lời.",
+				{
+					autoClose: 2000,
+				}
+			);
+			return;
+		}
+
 		const confirmed = window.confirm(
 			"Bạn có chắc chắn muốn xóa câu hỏi này không?"
 		);
@@ -173,7 +193,7 @@ const QuestionContainer = ({ isAdmin }) => {
 				{!isLoading && error && <p>{error}</p>}
 				{!isLoading &&
 					!error &&
-					sortedQuestions.map((question, index) => (
+					filteredQuestions.map((question, index) => (
 						<QuestionBox
 							key={index}
 							question={question}
