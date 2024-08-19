@@ -89,7 +89,7 @@ a {
 	gap: 5px;
 }
 
-.radio-inputs .radio input:checked + .name {
+.radio-inputs .radio input:checked+.name {
 	background-color: #fff;
 	font-weight: 600;
 }
@@ -540,6 +540,7 @@ body.no-scroll {
 	from {
 		opacity: 0;
 	}
+
 	to {
 		opacity: 1;
 	}
@@ -549,6 +550,7 @@ body.no-scroll {
 	from {
 		transform: scale(0.9);
 	}
+
 	to {
 		transform: scale(1);
 	}
@@ -753,14 +755,15 @@ body.no-scroll {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	/* height: 100px; */
 }
 
 #questionInput {
-	width: 250px;
-	padding: 8px;
-	border: 1px solid #4b5bb7;
-	border-radius: 4px;
+	width: 495px;
+	padding: 9.9px;
+	border: 0;
+	outline: 2px solid #58184c;
+	background: linear-gradient(135deg, #D0E3F4, #FFEBCC);
+	border-radius: 6.7px;
 	font-size: 16px;
 	text-shadow: 0 0 0 #4b5bb7;
 	margin-right: 9px;
@@ -769,46 +772,64 @@ body.no-scroll {
 #questionInput::placeholder {
 	color: #888;
 	font-size: 13px;
-	opacity: 0.5;
+	opacity: 1;
 }
 
-#submitButton {
-	padding: 8px 19px;
-	background-color: #4b5bb7;
-	color: #fff;
-	border: none;
-	border-radius: 4px;
+#questionInput:hover {
+	background: #fff;
+}
+
+
+#button {
 	cursor: pointer;
-	font-size: 14px;
-	transition: background-color 0.3s ease, transform 0.2s ease;
-	/* độ trễ */
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	position: relative;
+	padding: 9.9px 21px;
+	font-size: 16px;
+	color: #2B3044;
+	border: 2px solid #58184c;
+	border-radius: 11px;
+	background-color: transform;
+	font-weight: 600;
+	transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+	overflow: hidden;
 	text-transform: uppercase;
 	font-weight: bold;
 }
 
-#submitButton:hover {
-	background-color: #222b5b;
-	/* Màu đậm hơn */
-	transform: translateY(-1.5px);
-	/* nâng lên */
+#button::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	margin: auto;
+	width: 50px;
+	height: 50px;
+	border-radius: inherit;
+	scale: 0;
+	z-index: -1;
+	background: linear-gradient(77deg, #58184c, #4b5bb7);
+	transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
 }
 
-@media (max-width: 480px) {
-	.radio-inputs {
-		flex-direction: column;
-	}
+#button:hover::before {
+	scale: 3;
+}
 
-	.radio-inputs .radio {
-		flex: 0 0 100%;
-		width: 100%;
-	}
+#button:hover {
+	color: #ffffff;
+	border: 1px solid #58184c;
+	scale: 1.1;
+	box-shadow: 0 0px 20px rgba(193, 163, 98, 0.4);
+}
 
-	.radio-inputs .radio .name {
-		width: 100%;
-	}
+#button:active {
+	scale: 1;
+}
 
-	.question-container {
-		padding-top: 270px;
-	}
+
+#errorMessage {
+	color: #D9534F;
+	font-size: 12px;
+	margin-top: 3px;
+	margin-right: 333.3px;
+	text-align: center;
 }
