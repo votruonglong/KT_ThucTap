@@ -1,8 +1,13 @@
 import React from 'react'
+import QuestionContainer from "../../components/QuestionContainer";
+import QuestionForm from "../../components/QuestionInput"
 
 const AdminContainer = () => {
     return (
-        <div>AdminContainer</div>
+
+        <div>
+            <QuestionContainer isAdmin={true} />
+        </div>
     )
 }
 
