@@ -6,7 +6,6 @@ const AdminAnswerForm = ({ handleChange, text, onClose, questionId, fetchQuestio
 	const dispatch = useDispatch();
 
 	const handleInsert = async (e) => {
-		console.log(questionId, text);
 		e.preventDefault();
 
 		if (text.trim() === "") {

@@ -104,7 +104,7 @@ const QuestionContainer = ({ isAdmin }) => {
 
 	return (
 		<div>
-			<QuestionForm addQuestion={handleAddQuestion} />
+			{!isAdmin && <QuestionForm addQuestion={handleAddQuestion} />}
 			<div className="question-container">
 				{/* Pass questions and setFilteredQuestions to RadioInputs component */}
 				<RadioInputs questions={questions} setFilteredQuestions={setFilteredQuestions} />
