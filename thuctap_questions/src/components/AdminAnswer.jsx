@@ -1,6 +1,7 @@
 import React from 'react'
 
-const AdminAnswer = ({ anSwer }) => {
+const AdminAnswer = ({ answer }) => {
+    console.log(answer)
     return (
         <div>
             <div className='adminAnswerInfo'>
@@ -19,7 +20,7 @@ const AdminAnswer = ({ anSwer }) => {
                     <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3" />
                 </svg>
             </div>
-            {anSwer != "" ? <p className='adminText'>Có quy tắc ứng xử nào cần tuân thủ khi làm việc trong công ty?</p> : <p className='adminText'>Chưa trả lời</p>}
+            {answer != "" ? <p className='adminText'>{answer}</p> : <p className='adminText'>Chưa trả lời</p>}
 
         </div>
     )

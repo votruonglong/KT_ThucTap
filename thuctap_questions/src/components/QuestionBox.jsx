@@ -150,6 +150,8 @@ const QuestionBox = ({ question, bgColor, onDelete, isAdmin }) => {
 			{isModalAdminOpen && (
 				<Answer
 					question={question.question}
+					questionId={question.id}
+					answer={question.answer}
 					show={isModalAdminOpen}
 					onClose={handleCloseAdminModal}
 				/>

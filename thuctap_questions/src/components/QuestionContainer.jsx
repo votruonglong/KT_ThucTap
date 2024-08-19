@@ -29,6 +29,8 @@ const QuestionContainer = ({ isAdmin }) => {
 			const data = await response.json();
 
 			setQuestions(data);
+			console.log(data);
+
 			setError("");
 		} catch (error) {
 			console.error(error);
