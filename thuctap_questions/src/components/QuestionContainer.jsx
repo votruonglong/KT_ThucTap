@@ -64,8 +64,8 @@ const QuestionContainer = () => {
 		const newQuestionObject = {
 			question: newQuestion,
 			numberOfLikes: 0,
-			answer: true,
-			isAnswer: true
+			answer: "",
+			isAnswer: false
 		};
 	
 		try {
