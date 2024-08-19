@@ -69,7 +69,6 @@ const QuestionContainer = ({ isAdmin }) => {
 		const confirmed = window.confirm(
 			"Bạn có chắc chắn muốn xóa câu hỏi này không?"
 		);
-
 		if (confirmed) {
 			fetch(`${MainAPI}/${id}`, {
 				method: "DELETE",
@@ -118,7 +117,9 @@ const QuestionContainer = ({ isAdmin }) => {
 	return (
 		<div>
 			<QuestionForm addQuestion={handleAddQuestion} />
+			Tiếng Việt<i class="fas fa-toggle-on" style={{ color: '#63E6BE', margin: '0px 10px', fontSize: '30px', cursor: 'pointer' }}></i>  Tiếng Anh
 			<div className="question-container">
+
 				<span className="radio-inputs-cover">
 					<div className="radio-inputs">
 						<label className="radio">

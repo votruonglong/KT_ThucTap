@@ -1,0 +1,300 @@
+* {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.hover\:bg-gray-100:hover {
+    --tw-bg-opacity: 1;
+}
+
+.text-gray-500 {
+    --tw-text-opacity: 1;
+    color            : rgb(22 22 22) !important;
+}
+
+
+.hover-link-menu {
+    color        : #FFC107;
+    display      : block;
+    height       : 40px;
+    padding-left : 10px;
+    border-radius: 5px;
+    line-height  : 40px;
+
+    &:hover {
+        cursor          : pointer;
+        color           : white;
+        background-color: #49bce2;
+    }
+}
+
+.text-sm {
+    color      : black !important;
+    font-size  : .875rem;
+    line-height: 1.25rem;
+    border     : 1px solid black !important;
+}
+
+.home-header-container {
+    display        : flex;
+    gap            : 10px;
+    max-width      : 100%;
+    height         : 60px;
+    text-align     : center;
+    justify-content: space-between;
+    line-height    : 1.5;
+    vertical-align : middle;
+    top            : 0;
+    padding        : 0 40px;
+    background     : linear-gradient(to right, #360033, #0b8793);
+    font-family    : 'Font Awesome 5 Free';
+    font-size      : larger;
+    color          : #FFC107;
+    align-items    : center;
+    margin-bottom  : 30px;
+
+    .header-left {
+        display    : flex;
+        align-items: center;
+        height     : 80%;
+        width      : 15%;
+
+        .header-logo {
+            height         : 100%;
+            width          : 100%;
+            display        : flex;
+            justify-content: center;
+            align-items    : center;
+            cursor         : pointer;
+        }
+    }
+
+    .header-center {
+        width          : 40%;
+        display        : flex;
+        text-align     : center;
+        justify-content: center;
+        align-items    : center;
+        max-height     : 100%;
+
+        form {
+            width : 100%;
+            height: 100%;
+        }
+
+        .form-control {
+            width        : 80%;
+            margin       : 10px 0px;
+            border-radius: 10px;
+            padding-left : 10px;
+            color        : black;
+        }
+    }
+
+    .header-right {
+        width          : 35%;
+        display        : flex;
+        justify-content: center;
+        align-items    : center;
+        justify-content: space-around;
+
+        .support {
+            padding-right: 50px;
+            display      : flex;
+            align-items  : center;
+            cursor       : pointer;
+
+            i {
+                font-size   : 15px;
+                margin-right: 5px;
+
+                span {
+                    padding-left: 5px;
+                    font-weight : normal;
+                }
+            }
+
+            &:hover {
+                font-weight: bold;
+                color      : palevioletred;
+                opacity    : 0.85;
+            }
+
+        }
+
+        /* Định dạng dropdown button */
+        .dropdown {
+            position: relative;
+            display : inline-block;
+            cursor  : pointer;
+
+            &:hover {
+                .dropdown-content {
+                    position        : absolute;
+                    display         : block;
+                    background-color: #f5f5f5;
+                }
+            }
+
+            .dropdown-content {
+                display         : none;
+                position        : absolute;
+                background-color: #f9f9f9;
+                min-width       : 80px;
+                box-shadow      : 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+                z-index         : 1;
+
+                span {
+                    width          : 120px;
+                    color          : black;
+                    padding        : 8px 12px;
+                    text-decoration: none;
+                    display        : block;
+
+                    &:hover {
+                        // margin-top      : 2px;
+                        background-color: #49bce2;
+                        font-weight     : 600;
+                    }
+                }
+
+            }
+        }
+
+        .logout {
+            cursor: pointer;
+
+            &:hover {
+                color      : palevioletred;
+                font-weight: bold;
+                opacity    : 0.85;
+            }
+        }
+
+    }
+}
+
+
+
+/* Screen for PC*/
+@media only screen and (min-width: 1024px) {}
+
+/* Screen for  Tablet */
+@media only screen and (max-width: 1023px) and (min-width: 641px) {
+    .home-header-container {
+        width: auto;
+    }
+}
+
+@media only screen and (max-width: 640px) and (min-width: 381px) {
+    .home-header-container {
+        padding: 0 10px;
+        display: inline-block;
+        width  : auto;
+        height : 100%;
+    }
+
+    .header-left,
+    .header-center,
+    .header-right {
+        gap       : 60px;
+        height    : auto;
+        width     : 100%;
+        text-align: center;
+        padding   : 0px;
+    }
+
+    .header-center {
+        margin-top: 10px;
+    }
+
+    .support,
+    .logout {
+        padding: 5px 10px;
+    }
+
+    .dropdown {
+        display: block;
+        margin : 10px auto;
+    }
+
+    .home-header-container .header-center .form-control {
+        width        : 100%;
+        margin       : 10px 0px;
+        border-radius: 10px;
+        padding-left : 10px;
+    }
+
+    .dropdown-content {
+        width: 100%;
+    }
+
+    .dropdown-content span {
+        width        : 100%;
+        text-align   : center;
+        border-bottom: 1px solid #ccc;
+    }
+}
+
+/* Screen for SP */
+@media only screen and (max-width: 380px) and (min-width: 280px) {
+    .home-header-container {
+        padding: 0 10px;
+        display: inline-block;
+        width  : auto;
+        height : 100%;
+    }
+
+    .header-left,
+    .header-center,
+    .header-right {
+        height    : auto;
+        width     : 100%;
+        text-align: center;
+        padding   : 0px;
+        gap       : 50px;
+
+    }
+
+    .header-center {
+        margin-top: 10px;
+
+        .form-control {
+            width        : 80%;
+            margin       : 10px 0px;
+            border-radius: 10px;
+            padding-left : 10px;
+            line-height  : 35px !important;
+        }
+    }
+
+    .support,
+    .logout {
+        padding: 5px 10px;
+        /* Thêm padding cho các phần tử */
+    }
+
+    .dropdown {
+        display: block;
+        /* Hiển thị dropdown theo chiều dọc */
+        margin : 10px auto;
+        /* Canh giữa dropdown */
+    }
+
+    .dropdown-content {
+        width: 100%;
+    }
+
+    .dropdown-content span {
+        width        : 100%;
+        text-align   : center;
+        border-bottom: 1px solid #ccc;
+    }
+}
+
+.home-header-container .header-center .form-control {
+    width        : 80%;
+    margin       : 10px 0px;
+    border-radius: 10px;
+    padding-left : 10px;
+    line-height  : 35px;
+}

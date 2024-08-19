@@ -5,6 +5,7 @@ import UserContainer from "./pages/user/UserContainer";
 import AdminContainer from "./pages/admin/AdminContainer";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Support from "./components/Support";
 
 function App() {
 	return (
@@ -26,6 +27,13 @@ function App() {
 							<AdminLayout>
 								<AdminContainer />
 							</AdminLayout>
+						}
+					/>
+					<Route
+						path="/support"
+						element={
+							<Support>
+							</Support>
 						}
 					/>
 				</Routes>

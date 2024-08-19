@@ -30,7 +30,6 @@ const QuestionBox = ({ question, bgColor, onDelete, isAdmin }) => {
 			}
 		}
 	}, [question]);
-
 	// Cập nhật state likes khi question thay đổi
 	useEffect(() => {
 		setLikes(question.numberOfLikes);
