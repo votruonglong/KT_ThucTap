@@ -855,6 +855,9 @@ body.no-scroll {
 
 .form {
 	padding-left: 10px;
+	position: absolute;
+	width: 90%;
+	bottom: 10%;
 }
 
 textarea {
@@ -888,6 +891,10 @@ form button {
 	backface-visibility: hidden;
 	transform: translateY(-2px) translateZ(0) rotate(0);
 	border: 1px solid #c2c2c2;
+}
+
+.formButton {
+	margin-top: 10px;
 }
 
 
