@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import QuestionBox from "./QuestionBox";
+import QuestionForm from "./QuestionInput";
 import Loader from "./Loader";
 import { MainAPI } from "../MainAPI";
 import { toast } from "react-toastify";
 import Answer from "./Answer";
+import RadioInputs from "./RadioInputs";
 
 const QuestionContainer = ({ isAdmin }) => {
 	const [questions, setQuestions] = useState([]);
+	const [filteredQuestions, setFilteredQuestions] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState("");
 	const colors = [
@@ -17,6 +20,7 @@ const QuestionContainer = ({ isAdmin }) => {
 		"var(--bg-05)",
 	];
 
+	// Fetch questions from API
 	const fetchQuestions = async () => {
 		try {
 			setIsLoading(true);
@@ -28,9 +32,11 @@ const QuestionContainer = ({ isAdmin }) => {
 
 			const data = await response.json();
 
-			setQuestions(data);
-			console.log(data);
+			// Sort data by id in descending order
+			const sortedData = data.sort((a, b) => b.id - a.id);
 
+			setQuestions(sortedData);
+			setFilteredQuestions(sortedData);
 			setError("");
 		} catch (error) {
 			console.error(error);
@@ -44,11 +50,25 @@ const QuestionContainer = ({ isAdmin }) => {
 		fetchQuestions();
 	}, []);
 
+	// Handle delete question
 	const handleDelete = (id) => {
+		const questionToDelete = questions.find(
+			(question) => question.id === id
+		);
+
+		if (questionToDelete.isAnswer) {
+			toast.info(
+				"Bạn không thể xóa câu hỏi này vì đã có người trả lời.",
+				{
+					autoClose: 2000,
+				}
+			);
+			return;
+		}
+
 		const confirmed = window.confirm(
 			"Bạn có chắc chắn muốn xóa câu hỏi này không?"
 		);
-
 		if (confirmed) {
 			fetch(`${MainAPI}/${id}`, {
 				method: "DELETE",
@@ -61,11 +81,45 @@ const QuestionContainer = ({ isAdmin }) => {
 		}
 	};
 
+	// ADD QUESTION
+	const handleAddQuestion = async (newQuestion) => {
+		const newQuestionObject = {
+			question: newQuestion,
+			numberOfLikes: 0,
+			answer: "",
+			isAnswer: false
+		};
+
+		try {
+			const response = await fetch(MainAPI, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(newQuestionObject),
+			});
+
+			if (!response.ok) {
+				throw new Error("Thêm câu hỏi thất bại");
+			}
+			toast.success("Thêm câu hỏi thành công!!", { autoClose: 2000, });
+
+			fetchQuestions();
+		} catch (error) {
+			console.error("Lỗi khi thêm câu hỏi:", error);
+			toast.error("Xảy ra lỗi khi thêm câu hỏi.", { autoClose: 2000, });
+		}
+	};
+
+
 	const sortedQuestions = [...questions].sort((a, b) => b.id - a.id);
 
 	return (
-		<div className="question">
+		<div>
+			<QuestionForm addQuestion={handleAddQuestion} />
+			Tiếng Việt<i class="fas fa-toggle-on" style={{ color: '#63E6BE', margin: '0px 10px', fontSize: '30px', cursor: 'pointer' }}></i>  Tiếng Anh
 			<div className="question-container">
+
 				<span className="radio-inputs-cover">
 					<div className="radio-inputs">
 						<label className="radio">
@@ -140,7 +194,7 @@ const QuestionContainer = ({ isAdmin }) => {
 				{!isLoading && error && <p>{error}</p>}
 				{!isLoading &&
 					!error &&
-					sortedQuestions.map((question, index) => (
+					filteredQuestions.map((question, index) => (
 						<QuestionBox
 							key={index}
 							question={question}
@@ -152,7 +206,6 @@ const QuestionContainer = ({ isAdmin }) => {
 			</div>
 			<Answer />
 		</div>
-
 	);
 };
 

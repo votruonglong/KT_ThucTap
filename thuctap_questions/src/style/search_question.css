@@ -1,0 +1,12 @@
+.p-4 {
+    margin: 0 auto;
+    padding: 2rem !important;
+}
+
+.max-w-md {
+    max-width: 50rem;
+}
+.text-gray-900 {
+    --tw-text-opacity: 1;
+    color: #2207ff !important;
+}
