@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 const QuestionForm = ({ addQuestion }) => {
     const [question, setQuestion] = useState('');
     const [err, setErr] = useState('');
-    const [isSubmit, setIsSubmitting] = useState(false);
+    const [isSubmit, setIsSubmit] = useState(false);
 
     const handleInput = (e) => {
         const value = e.target.value;
@@ -18,11 +18,11 @@ const QuestionForm = ({ addQuestion }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (question.length <= 200 && !isSubmit) {
-            setIsSubmitting(true);
+            setIsSubmit(true);
             await addQuestion(question);
             setQuestion('');
             setErr('');
-            setIsSubmitting(false);
+            setIsSubmit(false);
         } else {
             setErr('Bạn đã nhập quá số lượng ký tự cho phép');
         }
