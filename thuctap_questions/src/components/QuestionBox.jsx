@@ -5,11 +5,13 @@ import ShowQuestionModal from "./ShowQuestionModal";
 import EditQuestionModal from "./EditQuestionModal";
 import axios from "axios";
 import { MainAPI } from "../MainAPI";
+import Answer from "./Answer";
 
-const QuestionBox = ({ question, bgColor, onDelete }) => {
+const QuestionBox = ({ question, bgColor, onDelete, isAdmin }) => {
 	const textRef = useRef(null);
 	const [showSeeMore, setShowSeeMore] = useState(false);
 	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [isModalAdminOpen, setIsModalAdminOpen] = useState(false);
 	const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 	const [likes, setLikes] = useState(question.numberOfLikes);
 
@@ -32,6 +34,17 @@ const QuestionBox = ({ question, bgColor, onDelete }) => {
 		document.body.classList.add("no-scroll");
 	};
 
+	const handleBoxAdminClick = () => {
+		console.log("click")
+		setIsModalAdminOpen(true);
+		document.body.classList.add("no-scroll");
+	};
+
+	const handleCloseAdminModal = () => {
+		setIsModalAdminOpen(false);
+		document.body.classList.remove("no-scroll");
+	};
+
 	const handleEditButtonClick = (event) => {
 		event.stopPropagation(); // Ngăn chặn sự kiện click lan truyền lên thẻ cha
 		setIsEditModalOpen(true);
@@ -42,6 +55,8 @@ const QuestionBox = ({ question, bgColor, onDelete }) => {
 		setIsModalOpen(false);
 		document.body.classList.remove("no-scroll");
 	};
+
+
 
 	const handleCloseEditModal = () => {
 		setIsEditModalOpen(false);
@@ -73,7 +88,7 @@ const QuestionBox = ({ question, bgColor, onDelete }) => {
 			<div
 				className="question-box"
 				style={{ backgroundColor: bgColor }}
-				onClick={handleBoxClick}
+				onClick={isAdmin === true ? handleBoxAdminClick : handleBoxClick}
 			>
 				{/* ==== EDIT BUTTON ==== */}
 				<span
@@ -130,6 +145,13 @@ const QuestionBox = ({ question, bgColor, onDelete }) => {
 				<ShowQuestionModal
 					question={question.question}
 					onClose={handleCloseModal}
+				/>
+			)}
+			{isModalAdminOpen && (
+				<Answer
+					question={question.question}
+					show={isModalAdminOpen}
+					onClose={handleCloseAdminModal}
 				/>
 			)}
 			{/* ==== EDIT MODAL ==== */}

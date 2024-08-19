@@ -5,7 +5,7 @@ import { MainAPI } from "../MainAPI";
 import { toast } from "react-toastify";
 import Answer from "./Answer";
 
-const QuestionContainer = () => {
+const QuestionContainer = ({ isAdmin }) => {
 	const [questions, setQuestions] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState("");
@@ -144,6 +144,7 @@ const QuestionContainer = () => {
 							question={question}
 							bgColor={colors[index % colors.length]}
 							onDelete={handleDelete}
+							isAdmin={isAdmin}
 						/>
 					))}
 			</div>

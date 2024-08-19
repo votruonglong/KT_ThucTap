@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
 
 :root {
 	--bg-01: #fff8a7;
@@ -18,7 +18,7 @@
 }
 
 body {
-	font-family: "Baloo Paaji 2", sans-serif;
+	font-family: 'Roboto Mono', monospace;
 }
 
 ul,
@@ -765,17 +765,194 @@ body.no-scroll {
 	width: 500px;
 	height: 600px;
 	background-color: white;
-	position: absolute;
+	position: fixed;
 	left: 35%;
 	top: 20%;
-	z-index: 2;
 	border-radius: 14px;
+	box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.1);
+	z-index: 9999;
+	transform: scale(0.9);
+	animation: scaleIn 0.3s forwards;
+	visibility: hidden;
+}
+
+.unHidden {
+	visibility: visible;
 }
 
 .answerHeader {
-	height: 60px;
+	width: 90%;
+	height: 12%;
 	border-bottom: 1px solid rgb(212, 212, 212);
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	margin: auto;
+}
+
+.answerClose {
+	width: 40px;
+	height: 30px;
+	cursor: pointer;
+
+}
+
+.answerTextIcon {
+	font-weight: bold;
+	font-size: 15px;
+}
+
+.answerContent {
+	height: 78%;
+	width: 90%;
+	margin: auto;
+	margin-top: 10px;
+}
+
+.answerFooter {
+	width: 90%;
+	border-top: 1px solid rgb(212, 212, 212);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin: auto;
+}
+
+.answerFooter p {
+	color: #bebcbc;
+	margin-top: 10px;
+}
+
+.answerInfo {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+}
+
+.adminAnswerInfo {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.answerAvt {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background-color: rgb(226, 223, 223);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: bold;
+	margin-right: 10px;
+}
+
+.answerInfoLeft {
+	display: flex;
+	align-items: center;
+}
+
+.form {
+	position: absolute;
+	bottom: 60px;
+	width: 90%;
+}
+
+textarea {
+	font: inherit;
+	border: initial;
+	resize: none;
+	outline: initial;
+}
+
+textarea {
+	height: 80px;
+	width: 100%;
+	background-color: #f0e9e9;
+	color: rgba(0, 0, 0, 0.8);
+	font-size: 14px;
+	margin-top: 10px;
+	padding: 15px 20px;
+	box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.1);
+}
+
+form button {
+	color: #161921;
+	font-size: 12px;
+	font-weight: 500;
+	padding: 4px 16px 9px;
+	border-radius: 8px;
+	font-weight: 600;
+	background-color: #fff;
+	cursor: pointer;
+	transition: all 0.2s;
+	backface-visibility: hidden;
+	transform: translateY(-2px) translateZ(0) rotate(0);
+	border: 1px solid #c2c2c2;
+}
+
+.formButton {
+	margin-top: 10px;
+}
+
+form button:hover,
+form button:focus {
+	transform: translateY(-2px) translateZ(0) scale(1.15);
+}
+
+form button:active {
+	transform: translateY(-2px) translateZ(0) scale(1.07);
+}
+
+form button:hover span {
+	transform: translateY(2px) translateZ(0);
+}
+
+form button span {
+	display: block;
+	transition: all 0.2s;
+	backface-visibility: hidden;
+	transform: translateY(2px) translateZ(0) rotate(0);
+}
+
+form button span::selection {
+	color: rgba(0, 0, 0, 0.85);
+	background-color: rgba(0, 0, 0, 0.1);
+}
+
+form div {
+	text-align: end;
+}
+
+.userQuestion {
+	height: 20%;
+	padding: 10px;
+	border-bottom: 1px solid rgb(212, 212, 212);
+}
+
+.userText {
+	font-size: 16px;
+}
+
+.userQuestionButton {
+	margin-top: 15px;
+}
+
+.adminAnswer {
+	margin-top: 10px;
+}
+
+.adminText {
+	padding: 10px;
+}
+
+.adminAnswerText {
+	font-size: 14px;
+	font-weight: 700;
+}
+
+.modalContent {
+	height: 100%;
+	z-index: 9999;
 }
