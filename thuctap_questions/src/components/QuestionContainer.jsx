@@ -49,7 +49,7 @@ const QuestionContainer = ({ isAdmin }) => {
 	const handleDelete = (id) => {
 		const questionToDelete = questions.find((question) => question.id === id);
 
-		if (questionToDelete.isAnswer) {
+		if (isAdmin && questionToDelete.isAnswer) {
 			toast.info("Bạn không thể xóa câu hỏi này vì đã có người trả lời.", {
 				autoClose: 2000,
 			});
