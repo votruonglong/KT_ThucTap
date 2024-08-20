@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { updateQuestion } from "../services/questionSerivce";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 const EditQuestionModal = ({ question, questionId, onClose, fetchQuestions }) => {
 
@@ -19,6 +20,7 @@ const EditQuestionModal = ({ question, questionId, onClose, fetchQuestions }) =>
 			await dispatch(updateQuestion({ id: questionId, question: text }))
 			onClose()
 			await fetchQuestions()
+			toast.success("sửa thành công")
 		} catch (error) {
 			console.error(error);
 		}
@@ -63,8 +65,9 @@ const EditQuestionModal = ({ question, questionId, onClose, fetchQuestions }) =>
 					name="question-edit"
 					id="question-edit"
 					onChange={handleChange}
-					value={question}
-				/>
+				>
+					{question}
+				</textarea>
 
 				<div className="save-btn-cover">
 					<button type="button" className="cancel-btn" onClick={onClose}>

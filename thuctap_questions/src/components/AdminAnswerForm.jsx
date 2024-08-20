@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { updateAnswer } from "../services/answerService";
+import { toast } from "react-toastify";
 
 const AdminAnswerForm = ({ handleChange, text, onClose, questionId, fetchQuestions }) => {
 	const dispatch = useDispatch();
@@ -16,6 +17,7 @@ const AdminAnswerForm = ({ handleChange, text, onClose, questionId, fetchQuestio
 		try {
 			await dispatch(updateAnswer({ id: questionId, answer: text, isAnswer: true }));
 			onClose();
+			toast.success("Thêm thành công")
 			await fetchQuestions();
 		} catch (error) {
 			console.error(error);
