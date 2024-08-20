@@ -10,12 +10,23 @@ const EditQuestionModal = ({ question, onClose }) => {
 	return (
 		<div className="modal-overlay" onClick={handleOverlayClick}>
 			<form className="modal-content">
-				<div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-					<h2>Chỉnh sửa</h2>
+				<div
+					style={{
+						display: "flex",
+						alignItems: "center",
+						justifyContent: "space-between",
+					}}
+				>
+					<h2 style={{ fontSize: "24px", fontWeight: "bold" }}>Chỉnh sửa</h2>
 					<button className="close-button" onClick={onClose}>
 						<span className="text">Đóng</span>
 						<span className="icon">
-							<svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width={24}
+								height={24}
+								viewBox="0 0 24 24"
+							>
 								<path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z" />
 							</svg>
 						</span>
@@ -43,7 +54,12 @@ const EditQuestionModal = ({ question, onClose }) => {
 					<button type="submit" className="save-btn">
 						<div>
 							<div className="save-btn-icon-cover">
-								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={18} height={18}>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 24 24"
+									width={18}
+									height={18}
+								>
 									<path fill="none" d="M0 0h24v24H0z" />
 									<path
 										fill="currentColor"

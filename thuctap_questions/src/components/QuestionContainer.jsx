@@ -105,6 +105,17 @@ const QuestionContainer = ({ isAdmin }) => {
 	return (
 		<div>
 			{!isAdmin && <QuestionForm addQuestion={handleAddQuestion} />}
+			Tiếng Việt
+			<i
+				className="fas fa-toggle-on"
+				style={{
+					color: "#63E6BE",
+					margin: "0px 10px",
+					fontSize: "30px",
+					cursor: "pointer",
+				}}
+			></i>{" "}
+			Tiếng Anh
 			<div className="question-container">
 				{/* Pass questions and setFilteredQuestions to RadioInputs component */}
 				<RadioInputs questions={questions} setFilteredQuestions={setFilteredQuestions} />
