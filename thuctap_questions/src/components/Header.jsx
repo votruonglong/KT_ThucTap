@@ -17,6 +17,8 @@ const Header = () => {
     const [filteredQuestions, setFilteredQuestions] = useState([]);
     const [question, setQuestion] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [userName, setUserName] = useState('');
 
     useEffect(() => {
         const checkIsDesktop = () => {
@@ -36,6 +38,12 @@ const Header = () => {
         };
 
         window.addEventListener('resize', handleResize);
+
+        const token = localStorage.getItem('token');//
+        const email = localStorage.getItem('userEmail');
+        const emailName = email ? email.split('@')[0] : ''; 
+        setIsAuthenticated(!!token); 
+        setUserName(emailName);
 
         return () => {
             window.removeEventListener('resize', handleResize);
@@ -59,6 +67,18 @@ const Header = () => {
     const handleredirect_support = () => {
         navigate('/support')
     }
+
+    const handleredirect_Login = () => {
+        navigate('/Login')
+    }
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('userEmail');
+        setIsAuthenticated(false);
+        setUserName('');
+        navigate('/Login');
+    };
 
     const fetchQuestions = async () => {
         try {
@@ -170,20 +190,26 @@ const Header = () => {
                                 >Support</span>
                             </i>
                         </div>
-                        <div className="dropdown">
-                            <span>Login</span>
-                            <div className="dropdown-content">
-                                <span onClick={handleredirect_admin}>
-                                    <i className="fas fa-user-cog"></i>&nbsp;&nbsp;Admin
-                                </span>
-                                <span onClick={handleredirect_user}>
-                                    <i className="fas fa-user"></i>&nbsp;&nbsp;Intern
-                                </span>
+                        {isAuthenticated ? (
+                            <div className="dropdown">
+                                <span>{userName}</span>
+                                <div className="dropdown-content">
+                                    <span onClick={handleredirect_admin}>
+                                        <i className="fas fa-user-cog"></i>&nbsp;&nbsp;Admin
+                                    </span>
+                                    <span onClick={handleredirect_user}>
+                                        <i className="fas fa-user"></i>&nbsp;&nbsp;Intern
+                                    </span>
+                                </div>
                             </div>
-                        </div>
-                        <div className='logout'>
-                            Logout&nbsp;<i className="fas fa-sign-out-alt"></i>
-                        </div>
+                        ) : (
+                            <span className="login-link" onClick={handleredirect_Login}>Login</span>
+                        )}
+                        {isAuthenticated && (
+                            <div className='logout' onClick={handleLogout}>
+                                Logout&nbsp;<i className="fas fa-sign-out-alt"></i>
+                            </div>
+                        )}
                     </div>
                 </div>
             ) : (
@@ -220,21 +246,25 @@ const Header = () => {
                                         </span>
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="/admin" className="hover-link-menu">
-                                        <span><i className="fas fa-user-cog"></i>&nbsp;&nbsp;Admin</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/" className="hover-link-menu">
-                                        <span><i className="fas fa-user"></i>&nbsp;&nbsp;Intern</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" className="hover-link-menu">
-                                        <i className="fas fa-sign-out-alt">&nbsp;&nbsp;</i>Logout
-                                    </a>
-                                </li>
+                                {isAuthenticated && (
+                                    <>
+                                        <li>
+                                            <a href="/admin" className="hover-link-menu">
+                                                <span><i className="fas fa-user-cog"></i>&nbsp;&nbsp;Admin</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="/" className="hover-link-menu">
+                                                <span><i className="fas fa-user"></i>&nbsp;&nbsp;Intern</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" onClick={handleLogout} className="hover-link-menu">
+                                                <i className="fas fa-sign-out-alt">&nbsp;&nbsp;</i>Logout
+                                            </a>
+                                        </li>
+                                    </>
+                                )}
                             </ul>
                         </div>
                     </div>

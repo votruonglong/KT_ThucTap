@@ -101,4 +101,8 @@ border: none;
         font-size: 19px;
     }
         
-    
+.error{
+    color: #D9534F;
+    font-size: 12px;
+    margin-bottom:10px;
+}
