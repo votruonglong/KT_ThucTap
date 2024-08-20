@@ -6,6 +6,7 @@ import AdminContainer from "./pages/admin/AdminContainer";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Support from "./components/Support";
+import Login_Page from "./components/Login";
 
 function App() {
 	return (
@@ -34,6 +35,12 @@ function App() {
 						element={
 							<Support>
 							</Support>
+						}
+					/>
+					<Route
+						path="/login"
+						element={
+							<Login_Page></Login_Page>
 						}
 					/>
 				</Routes>
