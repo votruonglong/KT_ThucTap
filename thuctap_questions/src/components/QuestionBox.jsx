@@ -161,7 +161,8 @@ const QuestionBox = ({ question, bgColor, onDelete, isAdmin, fetchQuestions }) =
 				/>
 			)}
 			{/* ==== EDIT MODAL ==== */}
-			{isEditModalOpen && <EditQuestionModal question={question.question} onClose={handleCloseEditModal} />}
+			{isEditModalOpen && <EditQuestionModal question={question.question}
+				questionId={question.id} onClose={handleCloseEditModal} fetchQuestions={fetchQuestions} />}
 		</>
 	);
 };

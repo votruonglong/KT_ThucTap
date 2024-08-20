@@ -1,15 +1,43 @@
 import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
+import { updateQuestion } from "../services/questionSerivce";
+import { useState } from "react";
 
-const EditQuestionModal = ({ question, onClose }) => {
+const EditQuestionModal = ({ question, questionId, onClose, fetchQuestions }) => {
+
+	const [text, setText] = useState('')
+
+
+	const dispatch = useDispatch()
+
+	const handleUpdateQuestion = async (e) => {
+		console.log(questionId, text);
+
+		e.preventDefault()
+
+		try {
+			await dispatch(updateQuestion({ id: questionId, question: text }))
+			onClose()
+			await fetchQuestions()
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
 	const handleOverlayClick = (e) => {
 		if (e.target === e.currentTarget) {
 			onClose();
 		}
 	};
 
+	const handleChange = (e) => {
+		const newText = e.target.value;
+		setText(newText);
+	};
+
 	return (
 		<div className="modal-overlay" onClick={handleOverlayClick}>
-			<form className="modal-content">
+			<form className="modal-content" onSubmit={handleUpdateQuestion}>
 				<div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
 					<h2>Chỉnh sửa</h2>
 					<button className="close-button" onClick={onClose}>
@@ -30,12 +58,14 @@ const EditQuestionModal = ({ question, onClose }) => {
 						padding: "0.5rem",
 						borderRadius: "5px",
 						margin: "10px 0",
+
 					}}
 					name="question-edit"
 					id="question-edit"
-				>
-					{question}
-				</textarea>
+					onChange={handleChange}
+					value={question}
+				/>
+
 				<div className="save-btn-cover">
 					<button type="button" className="cancel-btn" onClick={onClose}>
 						<span>Hủy</span>
@@ -63,6 +93,7 @@ const EditQuestionModal = ({ question, onClose }) => {
 EditQuestionModal.propTypes = {
 	question: PropTypes.string.isRequired,
 	onClose: PropTypes.func.isRequired,
+	fetchQuestions: PropTypes.func.isRequired,
 };
 
 export default EditQuestionModal;
