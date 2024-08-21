@@ -6,7 +6,6 @@ import { changeLanguage } from "../store/reducers/languageReducer";
 import { LANGUAGES } from "../utils/constant";
 import { FormattedMessage } from "react-intl";
 
-
 const Support = () => {
 	const language = useSelector((state) => state.language);
 
@@ -19,10 +18,18 @@ const Support = () => {
 	return (
 		<>
 			<Header />
-			<div>
-				<span>{language === LANGUAGES.VI ? 'Tiếng Việt' : 'Tiếng Anh'}</span>
+			<div
+				style={{
+					display: "flex",
+					alignItems: "center",
+					width: "150px",
+					margin: "10px 10vw",
+					justifyContent: "space-between",
+				}}
+			>
+				<span>{language === LANGUAGES.VI ? "Tiếng Việt" : "Tiếng Anh"}</span>
 				<i
-					className={`fas fa-toggle-${language === LANGUAGES.VI ? 'off' : 'on'}`}
+					className={`fas fa-toggle-${language === LANGUAGES.VI ? "off" : "on"}`}
 					style={{
 						color: language === LANGUAGES.VI ? "#DC091E" : "#63E6BE",
 						margin: "0px 10px",
@@ -35,7 +42,7 @@ const Support = () => {
 
 			<Accordion
 				style={{
-					marginBottom: "30px",
+					margin: "0 10vw 30px",
 				}}
 			>
 				<AccordionPanel>
