@@ -20,6 +20,12 @@ const Login_Page = () => {
 							<a href="#">
 								<i className="fab fa-facebook"></i>
 							</a>
+							<a href="#">
+								<i className="fab fa-linkedin"></i>
+							</a>
+							<a href="#">
+								<i className="fab fa-twitter"></i>
+							</a>
 						</div>
 					</div>
 				</div>
@@ -45,13 +51,16 @@ const Login_Page = () => {
 								<label>
 									<input type="checkbox" />
 									Remember me
-									<a href="#">Forgot password</a>
+
 								</label>
+								<a href="#">Forgot password</a>
 							</div>
-							<button type="submit">Sign in</button>
+							<button type="submit"
+								className="btn-login"
+							>Sign in</button>
 							<div className="login-register">
 								<p>
-									Don&apos;t have an account ?
+									Don&apos;t have an account?&nbsp;
 									<a href="#" className="register-link">
 										Sign up
 									</a>
