@@ -18,7 +18,9 @@ const EditQuestionModal = ({ question, questionId, onClose, fetchQuestions }) =>
 			await dispatch(updateQuestion({ id: questionId, question: text }));
 			onClose();
 			await fetchQuestions();
-			toast.success("sửa thành công");
+			toast.success("sửa thành công", {
+				autoClose: 2000,
+			});
 		} catch (error) {
 			console.error(error);
 		}
@@ -109,6 +111,7 @@ const EditQuestionModal = ({ question, questionId, onClose, fetchQuestions }) =>
 EditQuestionModal.propTypes = {
 	question: PropTypes.string.isRequired,
 	onClose: PropTypes.func.isRequired,
+	questionId: PropTypes.string.isRequired,
 	fetchQuestions: PropTypes.func.isRequired,
 };
 
