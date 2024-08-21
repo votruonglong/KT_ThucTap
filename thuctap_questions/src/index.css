@@ -17,10 +17,16 @@
 	box-sizing: border-box;
 }
 
+#root {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+*,
 body {
 	font-family: "Roboto Mono", monospace;
 	scroll-behavior: smooth;
-	overflow-y: scroll;
 }
 
 ul,
@@ -316,11 +322,13 @@ a {
 .heart-btn-left .like {
 	color: white;
 	font-weight: 600;
+	font-size: 12px;
 }
 
 .heart-btn-like {
 	width: 40%;
 	height: 100%;
+	font-size: 12px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -756,6 +764,7 @@ body.no-scroll {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	width: 100%;
 }
 
 #questionFormStyle {

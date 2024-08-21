@@ -62,6 +62,7 @@ const radioOptions = [
 
 import PropTypes from "prop-types";
 
+
 const RadioInputs = ({ questions, setFilteredQuestions }) => {
 	// Handle filter questions
 	const handleFilter = (option) => {
@@ -81,6 +82,8 @@ const RadioInputs = ({ questions, setFilteredQuestions }) => {
 		}
 		setFilteredQuestions(newQuestions); // Update filtered questions
 	};
+
+
 
 	return (
 		<span className="radio-inputs-cover">

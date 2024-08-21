@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
 
 const QuestionForm = ({ addQuestion }) => {
 	const [question, setQuestion] = useState("");
 	const [err, setErr] = useState("");
 	const [isSubmit, setIsSubmit] = useState(false);
+	const language = useSelector((state) => state.language);
 
 	const handleInput = (e) => {
 		const value = e.target.value;
@@ -29,7 +31,9 @@ const QuestionForm = ({ addQuestion }) => {
 		}
 	};
 
+	console.log('Check language: ', language)
 	return (
+
 		<div>
 			<form id="questionForm" onSubmit={handleSubmit}>
 				<div id="questionFormStyle">
